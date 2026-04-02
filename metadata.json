@@ -1,0 +1,5 @@
+{
+  "name": "DataPipeline Dashboard",
+  "description": "A full-stack data pipeline demonstration: Ingesting weather data, storing in a lake, transforming for a warehouse, and visualizing on a dashboard.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "WeatherReading": {
+      "title": "Weather Reading",
+      "description": "A processed weather data point for the warehouse.",
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time of the reading."
+        },
+        "temperature": {
+          "type": "number",
+          "description": "Temperature in Celsius."
+        },
+        "precipitation": {
+          "type": "number",
+          "description": "Precipitation in mm."
+        },
+        "humidity": {
+          "type": "number",
+          "description": "Relative humidity in %."
+        },
+        "source": {
+          "type": "string",
+          "description": "The origin of the data."
+        },
+        "location": {
+          "type": "string",
+          "description": "The geographical location of the reading."
+        }
+      },
+      "required": ["timestamp", "temperature", "precipitation", "location"]
+    },
+    "GenericData": {
+      "title": "Generic Data",
+      "description": "A generic data point for the warehouse when the format is unknown.",
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time the data was processed."
+        },
+        "payload": {
+          "type": "object",
+          "description": "The raw data payload."
+        },
+        "source": {
+          "type": "string",
+          "description": "The origin of the data."
+        },
+        "dataType": {
+          "type": "string",
+          "description": "The detected or assigned type of the data."
+        }
+      },
+      "required": ["timestamp", "payload", "source"]
+    }
+  },
+  "firestore": {
+    "/weather_warehouse/{readingId}": {
+      "schema": "WeatherReading",
+      "description": "The data warehouse containing transformed weather data."
+    },
+    "/generic_warehouse/{dataId}": {
+      "schema": "GenericData",
+      "description": "The data warehouse containing generic data points."
+    }
+  }
+}
